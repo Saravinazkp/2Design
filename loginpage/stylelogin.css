@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 1117px;
     margin: 0;
     background: #17161B;
 }
@@ -29,20 +29,30 @@ body {
 
 /* Left Section */
 .left-section {
-    flex: 1;
-    background: url('poster-image.jpg') no-repeat center center/cover;
     display: flex;
+    width: 771px;
+    height: 1169px;
+    padding: 58px 61px;
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 20px;
-    color: #fff;
+    align-items: flex-start;
+    gap: 10px;
+    flex-shrink: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('loginpagephoto.png') lightgray 50% / cover no-repeat;
 }
 
 .left-section .logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: auto;
+    color: #AB405C;
+    font-family: Montserrat;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
 }
 
 .left-section .logo .highlight {
@@ -51,13 +61,16 @@ body {
 
 /* Right Section */
 .right-section {
-    flex: 1;
+    display: flex;
+    width: 957px;
+    height: 1117px;
+    padding: 134px 102px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 66px;
+    flex-shrink: 0;
     background: linear-gradient(to bottom, #1C1A21, #2A152C);
     color: #fff;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .right-section h1 {
