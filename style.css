@@ -1,0 +1,229 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    background-size: cover;
+    flex-wrap: nowrap;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    line-height: 1.3;
+    background: linear-gradient(to bottom, #17161B, #812B5C);
+}
+
+/* Header */
+.header {
+    flex-direction: flex;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background: #17161B;
+    padding: 25px 80px 15px 80px;
+    border: #260B2C;
+
+}
+
+/* Logo */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.logo .highlight {
+    color: #AB405C;
+}
+
+/* Search Bar */
+.search-bar {
+    display: inline;
+    align-items: center;
+
+}
+
+#searchInput {
+    padding: 5px 10px;
+    font-size: 1rem;
+    border-radius: 15px;
+    border: 1px solid #AB405C;
+    outline: none;
+}
+
+.search-btn {
+    background: #AB405C;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/* Header Buttons */
+.header-buttons {
+    display: inline;
+    
+}
+
+.signup-btn,
+.login-btn {
+    display: inline;
+    padding: 10px 15px;
+    margin: auto;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+   
+    
+}
+
+.signup-btn {
+    background:#17161B; 
+    border: 1px solid #AB405C;
+    color:#ffffff;
+  
+}
+
+.signup-btn:hover {
+    background: #AB405C;
+
+}
+
+.login-btn {
+    background:#AB405C;
+    color: rgb(0, 0, 0);
+   
+}
+
+.login-btn:hover {
+    background: white;
+}
+
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+  }
+  
+  .hero h1 {
+    font-size: 4.5em;
+    margin: 20px 90px 40px 90px;
+    text-align: left;
+   
+  }
+  
+  .hero .highlight {
+    color: #ff4477;
+  }
+  
+  .hero p {
+    font-size: 1.5em;
+    margin: 40px 90px 40px 90px;
+    line-height: 1.6;
+    color: #ccc;
+    text-align: left;
+    
+  }
+  
+  .cta-btn {
+    background: transparent;
+    color: #ff4477;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: 1px solid #ff4477;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cta-btn:hover {
+    background: #ff4477;
+    color: #fff;
+  }
+  
+ /* Cards Section */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.card {
+    background: #18171C;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #AB405C;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.badge {
+    background: #FFE0B3;
+    color: #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.tags span {
+    background: #291B23;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #17161B;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+}
+.footer-content h3 {
+    margin-bottom: 10px;
+}
+.footer-content ul {
+    list-style: none;
+    padding: 0;
+}
+.footer-content li {
+    margin-bottom: 5px;
+}
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+}
+.social-links a:hover {
+    text-decoration: underline;
+}
