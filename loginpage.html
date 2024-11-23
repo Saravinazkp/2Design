@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="stylelogin.css">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <span><span class="highlight">2</span>Design</span>
+            </div>
+            <div class="poster">
+                <img src="poster-image.jpg" alt="Poster">
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <h1>Welcome back!</h1>
+            <p>Join now in every creator's favorite design marketplace.</p>
+            <form>
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" placeholder="Enter your username or email">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+
+                <a href="#" class="forgot-password">Forgot password?</a>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+
+            <div class="social-login">
+                <p>Or</p>
+                <button class="google-login">
+                    <i class='bx bxl-google'></i> Login with Google
+                </button>
+                <button class="apple-login">
+                    <i class='bx bxl-apple'></i> Login with Apple
+                </button>
+            </div>
+            <p class="signup-text">Don't have an account? <a href="#">Sign Up</a></p>
+        </div>
+    </div>
+</body>
+</html>
