@@ -1,15 +1,17 @@
-/* General Reset */
+    /* General Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Montserrat;
 }
 
 body {
+    
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 1728px;
     height: 1117px;
     margin: 0;
     background: #17161B;
@@ -29,6 +31,7 @@ body {
 
 /* Left Section */
 .left-section {
+    flex: 1;
     display: flex;
     width: 771px;
     height: 1169px;
@@ -61,49 +64,65 @@ body {
 
 /* Right Section */
 .right-section {
-    display: flex;
-    width: 957px;
-    height: 1117px;
-    padding: 134px 102px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 66px;
-    flex-shrink: 0;
+    flex: 1;
     background: linear-gradient(to bottom, #1C1A21, #2A152C);
     color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.right-header{
+    margin-bottom: 55px;
+}
+.right-header h1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    align-self: stretch;
 }
 
-.right-section h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #fff;
-}
-
-.right-section p {
-    font-size: 1rem;
-    margin-bottom: 20px;
-    color: #aaa;
+.right-header p {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    align-self: stretch;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    align-self: stretch;
 }
 
 form label {
-    font-size: 0.9rem;
-    color: #ccc;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    align-self: stretch;
 }
 
 form input {
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #444;
-    border-radius: 5px;
-    background: #2A152C;
-    color: #fff;
+    border-radius: 10px;
+    background: #F5F3F6;
+    height: 55px;
+    align-self: stretch;
+    border-radius: 10px;
+    background: #F5F3F6;
 }
 
 form input::placeholder {
@@ -111,10 +130,14 @@ form input::placeholder {
 }
 
 .forgot-password {
-    font-size: 0.9rem;
-    color: #AB405C;
-    text-decoration: none;
-    margin-top: -10px;
+    color: #FFF;
+    text-align: right;
+    font-family: Montserrat;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    align-self: stretch;
 }
 
 .forgot-password:hover {
@@ -122,12 +145,22 @@ form input::placeholder {
 }
 
 .login-btn {
-    padding: 10px;
-    background: #AB405C;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
+    color: #FFF;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    display: flex;
+    height: 90px;
+    padding: 18px 223px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 40px;
+   background: #AB405C;
     cursor: pointer;
     transition: background 0.3s;
 }
