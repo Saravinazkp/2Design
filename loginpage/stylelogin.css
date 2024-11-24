@@ -1,4 +1,4 @@
-    /* General Reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -7,12 +7,10 @@
 }
 
 body {
-    
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1728px;
-    height: 1117px;
+    height: 150vh;
     margin: 0;
     background: #17161B;
 }
@@ -20,9 +18,9 @@ body {
 /* Main Container */
 .container {
     display: flex;
-    width: 80%;
-    max-width: 1200px;
-    height: 80%;
+    width: 70%; /* sebelumnya 80% */
+    max-width: 800px; /* sebelumnya 1200px */
+    height: 70%; /* sebelumnya 80% */
     background: #1C1A21;
     border-radius: 10px;
     overflow: hidden;
@@ -32,13 +30,12 @@ body {
 /* Left Section */
 .left-section {
     flex: 1;
-    display: flex;
-    width: 771px;
-    height: 1169px;
-    padding: 58px 61px;
+    width: 500px; /* sebelumnya 771px */
+    height: 800px; /* sebelumnya 1169px */
+    padding: 30px 40px; /* sebelumnya 58px 61px */
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 8px; /* sebelumnya 10px */
     flex-shrink: 0;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('loginpagephoto.png') lightgray 50% / cover no-repeat;
 }
@@ -46,8 +43,7 @@ body {
 .left-section .logo {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 55px;
-    font-style: normal;
+    font-size: 40px; /* sebelumnya 55px */
     font-weight: 600;
     line-height: normal;
 }
@@ -61,7 +57,7 @@ body {
     flex: 1;
     background: linear-gradient(to bottom, #1C1A21, #2A152C);
     color: #fff;
-    padding: 40px;
+    padding: 20px; /* sebelumnya 40px */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,27 +65,23 @@ body {
     overflow: hidden;
     box-sizing: border-box;
 }
-.right-header{
-    margin-bottom: 55px;
+
+.right-header {
+    margin-bottom: 40px; /* sebelumnya 55px */
 }
+
 .right-header h1 {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 40px;
-    font-style: normal;
+    font-size: 30px; /* sebelumnya 40px */
     font-weight: 600;
-    line-height: normal;
-    align-self: stretch;
 }
 
 .right-header p {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 16px;
-    font-style: normal;
+    font-size: 14px; /* sebelumnya 16px */
     font-weight: 600;
-    line-height: normal;
-    align-self: stretch;
 }
 
 form {
@@ -103,20 +95,16 @@ form {
 form label {
     color: #FFF;
     font-family: Montserrat;
-    font-size: 25px;
-    font-style: normal;
+    font-size: 20px; /* sebelumnya 25px */
     font-weight: 600;
-    line-height: normal;
     align-self: stretch;
 }
 
 form input {
     border-radius: 10px;
     background: #F5F3F6;
-    height: 55px;
+    height: 45px; /* sebelumnya 55px */
     align-self: stretch;
-    border-radius: 10px;
-    background: #F5F3F6;
 }
 
 form input::placeholder {
@@ -127,10 +115,8 @@ form input::placeholder {
     color: #FFF;
     text-align: right;
     font-family: Montserrat;
-    font-size: 17px;
-    font-style: normal;
+    font-size: 14px; /* sebelumnya 17px */
     font-weight: 600;
-    line-height: normal;
     align-self: stretch;
 }
 
@@ -142,19 +128,17 @@ form input::placeholder {
     color: #FFF;
     text-align: center;
     font-family: Montserrat;
-    font-size: 36px;
-    font-style: normal;
+    font-size: 24px; /* sebelumnya 36px */
     font-weight: 600;
-    line-height: normal;
     display: flex;
-    height: 90px;
-    padding: 18px 223px;
+    height: 70px; /* sebelumnya 90px */
+    padding: 10px 150px; /* sebelumnya 18px 223px */
     justify-content: center;
     align-items: center;
     gap: 10px;
     align-self: stretch;
     border-radius: 40px;
-   background: #AB405C;
+    background: #AB405C;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -173,6 +157,7 @@ form input::placeholder {
 
 .social-login p {
     margin-bottom: 10px;
+    font-size: 0.8rem; /* sebelumnya default 1rem */
 }
 
 .social-login button {
@@ -185,7 +170,7 @@ form input::placeholder {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem; /* sebelumnya 1rem */
     transition: background 0.3s;
     gap: 50px;
 }
@@ -211,7 +196,7 @@ form input::placeholder {
 .signup-text {
     text-align: center;
     margin-top: 10px;
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* sebelumnya 0.9rem */
     color: #aaa;
 }
 
