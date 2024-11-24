@@ -44,12 +44,6 @@ body {
 }
 
 .left-section .logo {
-    color: #AB405C;
-    font-family: Montserrat;
-    font-size: 55px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
     color: #FFF;
     font-family: Montserrat;
     font-size: 55px;
@@ -173,6 +167,8 @@ form input::placeholder {
 .social-login {
     text-align: center;
     margin-top: 20px;
+    gap:50px;
+    
 }
 
 .social-login p {
@@ -191,6 +187,7 @@ form input::placeholder {
     cursor: pointer;
     font-size: 1rem;
     transition: background 0.3s;
+    gap: 50px;
 }
 
 .google-login {
