@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="stylesignup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <span><span class="highlight">2</span>Design</span>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="right-header">
+                <h1>Hi! Welcome!</h1>
+                <p>Join now in every creator's favorite design marketplace.</p>
+            </div>
+            <form>
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" placeholder="Enter your username or email" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+
+            <div class="social-login">
+                <p>Or</p>
+                <button class="google-login">
+                    <img src="/icon/Google.svg" alt="Google Icon"> Login with Google
+                </button>
+                <button class="apple-login">
+                    <img src="/icon/Apple.svg" alt="Apple Icon"> Login with Apple
+                </button>
+            </div>
+            <p class="signup-text">Already have an account? <a href="#">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>
