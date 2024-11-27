@@ -17,7 +17,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('loginpage'); // Halaman utama
+    res.render('loginpage'); // login
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signuppage'); // sign up
 });
 
 // Jalankan Server
