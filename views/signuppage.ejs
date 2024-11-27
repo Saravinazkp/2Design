@@ -21,15 +21,18 @@
                 <h1>Hi! Welcome!</h1>
                 <p>Join now in every creator's favorite design marketplace.</p>
             </div>
-            <form>
-                <label for="username">Username or Email</label>
-                <input type="text" id="username" placeholder="Enter your username or email" required>
+            <form action="/signup" method="POST"> <!-- Make sure the form is set to send POST request to /signup -->
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
                 
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" required>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+                <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
 
                 <button type="submit" class="signup-btn">Sign Up</button>
             </form>

@@ -22,13 +22,13 @@
                 <h1>Welcome back!</h1>
                 <p>Join now in every creator's favorite design marketplace.</p>
             </div>
-                <form>
-                    <label for="username">Username or Email</label>
-                    <input type="text" id="username">
+                <form action="/login" method="POST">
+                    <label for="usernameOrEmail">Username or Email</label>
+                    <input type="text" id="usernameOrEmail" name="usernameOrEmail">
     
                     <label for="password">Password</label>
-                    <input type="password" id="password">
-    
+                    <input type="password" id="password" name="password">
+                    
                     <a href="#" class="forgot-password">Forgot password?</a>
                     <button type="submit" class="login-btn">Login</button>
                 </form>
@@ -42,7 +42,7 @@
                     <img src="/icon/Apple.svg" alt="Icon 1"></a> Login with Apple
                 </button>
             </div>
-            <p class="signup-text">Don't have an account? <a href="#">Sign Up</a></p>
+            <p class="signup-text">Don't have an account? <a id="signup-btn">Sign Up</a></p>
         </div>
     </div>
 </body>
