@@ -3,5 +3,6 @@ document.getElementById('login-btn').addEventListener('click', () => {
 });
 
 document.getElementById('signup-btn').addEventListener('click', () => {
+    event.preventDefault();
     window.location.href = '/signup'; // Redirect ke rute signup
 });

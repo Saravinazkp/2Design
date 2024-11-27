@@ -1,74 +1,95 @@
-/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Montserrat;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #121212;
-    color: #fff;
+    height: 150vh;
+    margin: 0;
+    background: linear-gradient(to bottom, #17161B, #812B5C);
 }
 
+/* Main Container */
 .container {
     display: flex;
-    width: 90%;
-    max-width: 1200px;
-    height: 600px;
-    background: #1e1e1e;
+    width: 70%; /* sebelumnya 80% */
+    max-width: 800px; /* sebelumnya 1200px */
+    height: 70%; /* sebelumnya 80% */
+    background: #1C1A21;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 /* Left Section */
 .left-section {
     flex: 1;
-    background: url('signuppagephoto.png') no-repeat center center/cover;
-    display: flex;
-    justify-content: center;
+    width: 500px; /* sebelumnya 771px */
+    height: 800px; /* sebelumnya 1169px */
+    padding: 30px 40px; /* sebelumnya 58px 61px */
+    flex-direction: column;
     align-items: flex-start;
-    padding: 20px;
+    gap: 8px; /* sebelumnya 10px */
+    flex-shrink: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('loginpagephoto.png') lightgray 50% / cover no-repeat;
 }
 
-.logo {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #fff;
+.left-section .logo {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 40px; /* sebelumnya 55px */
+    font-weight: 600;
+    line-height: normal;
 }
 
-.logo .highlight {
-    color: #f06292;
+.left-section .logo .highlight {
+    color: #AB405C;
 }
 
 /* Right Section */
 .right-section {
     flex: 1;
-    padding: 40px;
+    background: linear-gradient(to bottom, #1C1A21, #2A152C);
+    color: #fff;
+    padding: 20px; /* sebelumnya 40px */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #1e1e1e;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-.right-header h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+.right-header {
+    margin-bottom: 40px; /* sebelumnya 55px */
+}
+
+
+right-header h1 {
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 30px; /* sebelumnya 40px */
+    font-weight: 600;
 }
 
 .right-header p {
-    color: #aaa;
-    margin-bottom: 20px;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 14px; /* sebelumnya 16px */
+    font-weight: 600;
 }
 
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
+    align-self: stretch;
 }
 
 label {
