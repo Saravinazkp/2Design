@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="/signuppage/stylesignup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+            <div class="logo">
+                <span><span class="highlight">2</span>Design</span>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="right-header">
+                <h1>Hi! Welcome!</h1>
+                <p>Join now in every creator's favorite design marketplace.</p>
+            </div>
+            <form action="/signup" method="POST"> <!-- Make sure the form is set to send POST request to /signup -->
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm your password" required>
+
+                <button type="submit" class="signup-btn">Sign Up</button>
+            </form>
+
+            <div class="social-login">
+                <p>Or</p>
+                <button class="google-login">
+                    <img src="/icon/Google.svg" alt="Google Icon"> Login with Google
+                </button>
+                <button class="apple-login">
+                    <img src="/icon/Apple.svg" alt="Apple Icon"> Login with Apple
+                </button>
+            </div>
+
+            <p class="signup-text">Already have an account? <a href="/login">Login</a></p> <!-- Link ke halaman login -->
+        </div>
+    </div>
+</body>
+</html>
