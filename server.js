@@ -115,7 +115,7 @@ app.post('/login', (req, res) => {
             // Set session jika login berhasil
             req.session.userId = user.id;
             console.log('User logged in successfully');
-            res.redirect('/'); // Redirect ke halaman utama
+            res.redirect('/signup'); // Redirect ke halaman utama
         });
     });
 });
