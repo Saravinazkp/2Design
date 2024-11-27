@@ -16,6 +16,9 @@ app.get('/', (req, res) => {
     res.render('index'); // Halaman utama
 });
 
+app.get('/login', (req, res) => {
+    res.render('loginpage'); // Halaman utama
+});
 
 // Jalankan Server
 const PORT = 3000;
