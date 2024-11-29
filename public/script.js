@@ -6,3 +6,8 @@ document.getElementById('signup-btn').addEventListener('click', () => {
     event.preventDefault();
     window.location.href = '/signup'; // Redirect ke rute signup
 });
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+
+    window.location.href = '/logout'; // Redirect ke rute signup
+});
