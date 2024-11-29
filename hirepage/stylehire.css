@@ -12,24 +12,21 @@ body {
     color: white;
 }
 
-.logo .highlight {
-    color: #AB405C;
-}
-.container {
-    background-color: linear-gradient(to bottom, #17161B,#41162e);
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
 header {
     align-items: center;
     display: flex;
     justify-content: space-between;
-    background: #17161B;
     padding: 15px 50px 15px 50px;
 }
-
+.logo .highlight {
+    color: #AB405C;
+}
+.container {
+    background-color: linear-gradient(to bottom, #17161B,#ab6b8e);
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
 .logout-btn {
     display: flex;
     padding: 10px 15px;
@@ -58,8 +55,8 @@ header {
 
 .profile-pic {
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     margin-right: 20px;
 }
 
@@ -75,15 +72,37 @@ header {
     margin-top: 10px;
 }
 
-.contact, .hire {
-    background-color: #6b4f8a;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    margin-right: 10px;
-    cursor: pointer;
-}
-
+.contact-btn, .hire-btn {
+        display: inline;
+        padding: 10px 15px;
+        margin: auto;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    .contact-btn {
+        background:#17161B; 
+        border: 1px solid #AB405C;
+        color:#ffffff;
+      
+    }
+    
+    .contact-btn:hover {
+        background: #AB405C;
+    
+    }
+    
+    .hire-btn {
+        background:#AB405C;
+        color: rgb(0, 0, 0);
+       
+    }
+    
+    .hire-btn:hover {
+        background: white;
+    }
 .stats {
     background-color: #A73E59;
     border-radius: 10px;
@@ -97,4 +116,55 @@ header {
     padding: 15px;
     margin-left: 20px;
     width: 200px;
+}
+.container-comments {
+    background-color: #696161;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: auto;
+    margin-top: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.avatar-pic {
+    background-color: #a0a0a0;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+
+.comment-text {
+    background-color: #e9e9e9;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    flex: 1;
+}
+
+.comment-form {
+    margin-top: 20px;
+    max-width: 98%;
+    align-items: center;
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.comment-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
