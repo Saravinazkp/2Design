@@ -5,27 +5,49 @@ body {
     margin: 0;
     padding: 0;
 }
+/* Logo */
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
 
+.logo .highlight {
+    color: #AB405C;
+}
 .container {
+    background-color: linear-gradient(to bottom, #17161B,#41162e);
     max-width: 1200px;
     margin: auto;
     padding: 20px;
 }
 
 header {
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    background: #17161B;
+    padding: 15px 50px 15px 50px;
 }
 
-.logout {
-    background-color: #9e4c4c;
-    color: white;
+.logout-btn {
+    display: flex;
+    padding: 10px 15px;
+    margin: auto;
+    font-size: 1rem;
     border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+    border-radius: 5px;
+    cursor: pointer;    
+}
+.logout-btn {
+    background:#AB405C;
+    color: rgb(255, 255, 255);
+    border: 1px solid #AB405C;
 }
 
+.logout-btn:hover {
+    background: #1c1c1c;
+}
 .profile {
     display: flex;
     background-color: #2a2a2a;
@@ -63,9 +85,16 @@ header {
 }
 
 .stats {
-    background-color: #3a3a3a;
+    background-color: #A73E59;
     border-radius: 10px;
     padding: 15px;
     margin-left: 20px;
-    width: 250px;
+    width: 200px;
+}
+.stats2 {
+    background-color: #A73E59;
+    border-radius: 10px;
+    padding: 15px;
+    margin-left: 20px;
+    width: 200px;
 }
