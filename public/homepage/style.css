@@ -207,6 +207,24 @@ body {
     }
 }
 
+.hire-btn {
+    display: inline;
+    padding: 10px 15px;
+    margin: auto;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.hire-btn {
+    background:#AB405C;
+    color: rgb(0, 0, 0);
+   
+}
+
+.hire-btn:hover {
+    background: white;
+}
 
 footer {
     padding: 20px;
