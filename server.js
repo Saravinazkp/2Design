@@ -30,8 +30,15 @@ app.use(session({
 
 
 app.get('/', (req, res) => {
-    res.render('index'); // Halaman utama
+    if (req.session.user) {
+        // Jika sudah login, kirimkan data user ke template
+        res.render('index', { user: req.session.user });
+    } else {
+        // Jika belum login, kirimkan null ke template
+        res.render('index', { user: null });
+    }
 });
+
 
 app.get('/login', (req, res) => {
     res.render('loginpage'); // login
@@ -39,6 +46,10 @@ app.get('/login', (req, res) => {
 
 app.get('/signup', (req, res) => {
     res.render('signuppage'); // sign up
+});
+
+app.get('/hire', (req, res) => {
+    res.render('hirepage'); // hire 
 });
 
 
