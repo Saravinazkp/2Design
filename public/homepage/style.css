@@ -81,7 +81,7 @@ body {
 }
 
 .signup-btn,
-.login-btn {
+.login-btn, .logout-btn {
     display: inline;
     padding: 10px 15px;
     margin: auto;
@@ -105,13 +105,13 @@ body {
 
 }
 
-.login-btn {
+.login-btn, .logout-btn {
     background:#AB405C;
     color: rgb(0, 0, 0);
    
 }
 
-.login-btn:hover {
+.login-btn, .logout-btn:hover {
     background: white;
 }
 
