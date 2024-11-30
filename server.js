@@ -68,6 +68,11 @@ app.get('/signup', (req, res) => {
     res.render('signuppage'); // sign up
 });
 
+app.get('/hirepage', (req, res) => {
+    res.render('hirepage'); // hire 
+});
+
+
 app.get('/hire', (req, res) => {
     res.render('hirepage'); // hire 
 });
@@ -93,6 +98,7 @@ app.get('/admin', isAuthenticated, (req, res) => {
         res.render('adminpage', { portfolios: result });
     });
 });
+
 
 
 

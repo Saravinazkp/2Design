@@ -92,19 +92,18 @@ form {
     align-self: stretch;
 }
 
-form label {
-    color: #FFF;
-    font-family: Montserrat;
-    font-size: 20px; /* sebelumnya 25px */
-    font-weight: 600;
-    align-self: stretch;
+label {
+    font-size: 0.9rem;
+    color: #aaa;
 }
 
-form input {
-    border-radius: 10px;
-    background: #F5F3F6;
-    height: 45px; /* sebelumnya 55px */
-    align-self: stretch;
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #2a2a2a;
+    color: #fff;
 }
 
 form input::placeholder {
@@ -123,74 +122,73 @@ form input::placeholder {
 .forgot-password:hover {
     text-decoration: underline;
 }
-
-.login-btn {
-    color: #FFF;
-    text-align: center;
-    font-family: Montserrat;
-    font-size: 24px; /* sebelumnya 36px */
-    font-weight: 600;
-    display: flex;
-    height: 70px; /* sebelumnya 90px */
-    padding: 10px 150px; /* sebelumnya 18px 223px */
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-    border-radius: 40px;
-    background: #AB405C;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.login-btn:hover {
-    background: #FF507D;
-}
-
 /* Social Login */
 .social-login {
-    text-align: center;
     margin-top: 20px;
-    gap:50px;
-    
+    text-align: center;
 }
 
 .social-login p {
     margin-bottom: 10px;
-    font-size: 0.8rem; /* sebelumnya default 1rem */
+    color: #aaa;
+}
+.login-btn {
+    padding: 10px;
+    background: #AB405C;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    height: 45px; 
+    border-radius: 30px;
+}
+.login-btn:hover {
+    background: #FF507D;
 }
 
-.social-login button {
+button.google-login{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
+    border: 1px solid #555;
+    background: #4077c9;
+    color: #fff;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 0.9rem; /* sebelumnya 1rem */
-    transition: background 0.3s;
-    gap: 50px;
+    transition: border-color 0.3s;
 }
-
-.google-login {
-    background: #4285F4;
+button.apple-login {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #555;
+    background: #04060a;
     color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.3s;
 }
 
-.google-login:hover {
-    background: #357AE8;
+button.google-login img,
+button.apple-login img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
 }
 
-.apple-login {
-    background: #000;
-    color: #fff;
-}
-
-.apple-login:hover {
-    background: #333;
+button.google-login:hover,
+button.apple-login:hover {
+    background-color:#AB405C ;
+    border-color: #f06292;
 }
 
 .signup-text {
