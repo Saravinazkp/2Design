@@ -32,6 +32,13 @@ app.use(session({
     cookie: { secure: false } // set secure: true jika menggunakan https
 }));
 
+//cek admin
+function isAuthenticated(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    next();
+}
 
 //getter
 app.get('/', (req, res) => {
@@ -39,13 +46,14 @@ app.get('/', (req, res) => {
     res.render('index', { user });
 });
 
+// Logout route
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
-            console.error(err);
-            return res.status(500).send('Error logging out');
+            console.error('Error destroying session:', err);
+            return res.status(500).send('Failed to logout');
         }
-        res.redirect('/');
+        res.redirect('/login'); // Redirect ke halaman login setelah logout berhasil
     });
 });
 
@@ -57,20 +65,27 @@ app.get('/signup', (req, res) => {
     res.render('signuppage'); // sign up
 });
 
-app.get('/hirepage', (req, res) => {
+app.get('/hire', (req, res) => {
     res.render('hirepage'); // hire 
 });
 
 app.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
+    req.session.destroy((err) => { // Menghancurkan sesi pengguna
         if (err) {
             console.error('Error destroying session:', err);
             return res.status(500).send('Failed to logout');
         }
-        res.redirect('/login'); // Redirect ke halaman login setelah logout
+        // Redirect ke halaman login setelah sesi dihancurkan
+        res.redirect('/login');
     });
 });
 
+app.get('/admin', isAuthenticated, (req, res) => {
+    if (req.session.user.username !== 'admin') {
+        return res.status(403).send('Access denied');
+    }
+    res.render('adminpage');
+});
 
 
 
@@ -114,32 +129,42 @@ app.post('/login', (req, res) => {
     console.log('Input received:', usernameOrEmail, password); 
 
     db.query(query, [usernameOrEmail], (err, result) => {
+    if (err) {
+        console.error('Database error:', err);
+        return res.status(500).send('Internal server error');
+    }
+
+    console.log('Query result:', result);
+
+    if (result.length === 0) {
+        return res.status(400).send('Invalid username/email or password');
+    }
+
+    const user = result[0];
+
+    bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) {
-            console.error('Database error:', err); 
+            console.error('Password compare error:', err);
             return res.status(500).send('Internal server error');
         }
 
-        console.log('Query result:', result); 
+        console.log('Password comparison result:', isMatch)
 
-        const user = result[0];
+        if (!isMatch) {
+            return res.status(400).send('Invalid username/email or password');
+        }
+        
+        req.session.user = { id: user.id, username: user.username };
 
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-            if (err) {
-                console.error('Password compare error:', err);
-                return res.status(500).send('Internal server error');
-            }
+        if (user.username === 'admin') {
+            return res.redirect('/admin');
+        }
 
-            console.log('Password comparison result:', isMatch)
-
-            if (!isMatch) {
-                return res.status(400).send('Invalid username/email or password');
-            }
-
-            req.session.user = { id: user.id, username: user.username };
-            console.log('User logged in successfully');
-            res.redirect('/');
-        });
+        console.log('User logged in successfully');
+        res.redirect('/');
     });
+});
+
 });
 
 
