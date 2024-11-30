@@ -72,11 +72,6 @@ app.get('/hirepage', (req, res) => {
     res.render('hirepage'); // hire 
 });
 
-
-app.get('/hire', (req, res) => {
-    res.render('hirepage'); // hire 
-});
-
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => { // Menghancurkan sesi pengguna
         if (err) {
