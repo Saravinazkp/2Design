@@ -36,7 +36,8 @@ body {
     align-items: flex-start;
     gap: 8px; /* sebelumnya 10px */
     flex-shrink: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('signuppagephoto.png') lightgray 50% / cover no-repeat;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('/signuppage/signuppagephoto.png') lightgray 50% / cover no-repeat;
+
 }
 
 .left-section .logo {
@@ -113,13 +114,16 @@ input:focus {
 
 .signup-btn {
     padding: 10px;
-    background: #f06292;
+    background: #AB405C;
     border: none;
     border-radius: 5px;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.3rem;
     cursor: pointer;
     transition: background 0.3s;
+    width: 100%;
+    height: 45px; 
+    border-radius: 30px;
 }
 
 .signup-btn:hover {
@@ -137,7 +141,20 @@ input:focus {
     color: #aaa;
 }
 
-button.google-login,
+button.google-login{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #555;
+    background: #4077c9;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
 button.apple-login {
     width: 100%;
     padding: 10px;
@@ -146,9 +163,9 @@ button.apple-login {
     align-items: center;
     justify-content: center;
     border: 1px solid #555;
-    background: #2a2a2a;
+    background: #04060a;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: border-color 0.3s;
 }
@@ -162,6 +179,7 @@ button.apple-login img {
 
 button.google-login:hover,
 button.apple-login:hover {
+    background-color:#AB405C ;
     border-color: #f06292;
 }
 
