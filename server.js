@@ -40,7 +40,9 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signuppage'); // sign up
 });
-
+app.get('/hirepage', (req, res) => {
+    res.render('hirepage'); // hire 
+});
 
 
 // Route untuk menangani proses signup dan menyimpan data ke database
