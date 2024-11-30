@@ -111,7 +111,7 @@ body {
    
 }
 
-.login-btn, .logout-btn:hover {
+.login-btn:hover, .logout-btn:hover {
     background: white;
 }
 

@@ -11,7 +11,7 @@ body {
     align-items: center;
     height: 150vh;
     margin: 0;
-    background: linear-gradient(to bottom, #17161B, #812B5C);
+    background: linear-gradient(to bottom, #17161B, #812B5C)
 }
 
 /* Main Container */

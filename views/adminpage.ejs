@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Manage Portfolio</title>
+    <link rel="stylesheet" href="/adminpage/styleadmin.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Panel</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Form Add Portfolio -->
+        <section>
+            <h2>Add New Portfolio</h2>
+            <form action="/admin/portfolio/add" method="POST" enctype="multipart/form-data">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="badge">Badge:</label>
+                <input type="text" id="badge" name="badge">
+                <label for="role">Role:</label>
+                <input type="text" id="role" name="role" required>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+                <label for="tags">Tags:</label>
+                <input type="text" id="tags" name="tags" placeholder="e.g., Design, Logo">
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" required>
+                <button type="submit">Add Portfolio</button>
+            </form>
+        </section>
+
+        <!-- Portfolio List -->
+        <section>
+            <h2>Existing Portfolios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Badge</th>
+                        <th>Role</th>
+                        <th>Description</th>
+                        <th>Tags</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% portfolios.forEach(portfolio => { %>
+                    <tr>
+                        <td><%= portfolio.title %></td>
+                        <td><%= portfolio.badge %></td>
+                        <td><%= portfolio.role %></td>
+                        <td><%= portfolio.description %></td>
+                        <td><%= JSON.parse(portfolio.tags).join(', ') %></td>
+                        <td><img src="<%= portfolio.image_path %>" alt="<%= portfolio.title %>" style="width:100px;"></td>
+                        <td>
+                            <form action="/admin/portfolio/delete" method="POST" style="display:inline;">
+                                <input type="hidden" name="id" value="<%= portfolio.id %>">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+</html>
