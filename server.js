@@ -6,6 +6,8 @@ const session = require('express-session');
 const app = express();
 const dbConnection = require('./db-config.js');
 const bcrypt = require('bcrypt');
+const fileUpload = require('express-fileupload');
+
 
 //koneksi ke database
 db = dbConnection;
@@ -31,6 +33,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false } // set secure: true jika menggunakan https
 }));
+app.use(fileUpload());
 
 //cek admin
 function isAuthenticated(req, res, next) {
@@ -81,10 +84,14 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/admin', isAuthenticated, (req, res) => {
-    if (req.session.user.username !== 'admin') {
-        return res.status(403).send('Access denied');
-    }
-    res.render('adminpage');
+    const query = 'SELECT * FROM `portfolio_cards`';
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error fetching portfolios:', err);
+            return res.status(500).send('Database error');
+        }
+        res.render('adminpage', { portfolios: result });
+    });
 });
 
 
@@ -167,6 +174,33 @@ app.post('/login', (req, res) => {
 
 });
 
+
+//bingung disini
+app.post('/admin/portfolio/add', (req, res) => {
+    const { title, badge, role, description, tags } = req.body;
+    const image = req.file ? `/uploads/${req.file.filename}` : null;
+
+    const query = 'INSERT INTO `portfolio_cards` (title, badge, role, description, tags, image_url) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), image], (err, result) => {
+        if (err) {
+            console.error('Error inserting portfolio:', err);
+            return res.status(500).send('Database error');
+        }
+        res.redirect('/admin');
+    });
+});
+
+app.post('/admin/portfolio/delete', (req, res) => {
+    const { id } = req.body;
+    const query = 'DELETE FROM `portofolio cards` WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error deleting portfolio:', err);
+            return res.status(500).send('Database error');
+        }
+        res.redirect('/admin');
+    });
+});
 
 
 // Jalankan Server
