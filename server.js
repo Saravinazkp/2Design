@@ -178,7 +178,14 @@ app.post('/login', (req, res) => {
 //bingung disini
 app.post('/admin/portfolio/add', (req, res) => {
     const { title, badge, role, description, tags } = req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+    const image = req.files.image;
+    const uploadPath = `public/uploads/${image.name}`;
+    image.mv(uploadPath, (err) => {
+        if (err) {
+            console.error('Error saving file:', err);
+            return res.status(500).send('Error uploading file');
+        }
+        const imagePath = `/uploads/${image.name}`;
 
     const query = 'INSERT INTO `portfolio_cards` (title, badge, role, description, tags, image_url) VALUES (?, ?, ?, ?, ?, ?)';
     db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), image], (err, result) => {
@@ -187,6 +194,7 @@ app.post('/admin/portfolio/add', (req, res) => {
             return res.status(500).send('Database error');
         }
         res.redirect('/admin');
+    })
     });
 });
 
