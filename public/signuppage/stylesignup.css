@@ -11,7 +11,7 @@ body {
     align-items: center;
     height: 150vh;
     margin: 0;
-    background: linear-gradient(to bottom, #17161B, #812B5C);
+    background: linear-gradient(to bottom, #17161B, #812B5C)
 }
 
 /* Main Container */
@@ -37,6 +37,7 @@ body {
     gap: 8px; /* sebelumnya 10px */
     flex-shrink: 0;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('/signuppage/signuppagephoto.png') lightgray 50% / cover no-repeat;
+
 }
 
 .left-section .logo {

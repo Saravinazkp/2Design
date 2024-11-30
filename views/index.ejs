@@ -18,9 +18,15 @@
             <button class="search-btn"><i class="fa-solid fa-magnifying-glass" style="color: white;"></i></button>
         </form>
         <div class="header-buttons">
-            <button id="signup-btn" class="signup-btn">Sign Up</button>
-            <button id="login-btn" class="login-btn">Login</button>
+            <% if (user) { %> <!-- Jika user sudah login -->
+                <button id="logout-btn" class="logout-btn">Log Out</button>
+                <span>Welcome, <%= user.username %>!</span>
+            <% } else { %> <!-- Jika user belum login -->
+                <button id="signup-btn" class="signup-btn">Sign Up</button>
+                <button id="login-btn" class="login-btn">Login</button>
+            <% } %>
         </div>
+        
     </header>
     
 

@@ -6,18 +6,24 @@ const session = require('express-session');
 const app = express();
 const dbConnection = require('./db-config.js');
 const bcrypt = require('bcrypt');
+const fileUpload = require('express-fileupload');
 
+
+//koneksi ke database
 db = dbConnection;
 
+
+//bodyparser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+//view
 app.set('view engine', 'ejs');
-
-// Specify views directory (default is './views')
 app.set('views', './views');
 
+
+//middleware
 app.use(express.static('public')); // Untuk static files seperti CSS, JS, gambar
 app.use(express.urlencoded({ extended: true })); // Untuk menangani form-urlencoded
 app.use(express.json()); // Untuk menangani JSON
@@ -27,10 +33,31 @@ app.use(session({
     saveUninitialized: true,
     cookie: { secure: false } // set secure: true jika menggunakan https
 }));
+app.use(fileUpload());
 
+//cek admin
+function isAuthenticated(req, res, next) {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    next();
+}
 
+//getter
 app.get('/', (req, res) => {
-    res.render('index'); // Halaman utama
+    const user = req.session.user || null;
+    res.render('index', { user });
+});
+
+// Logout route
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).send('Failed to logout');
+        }
+        res.redirect('/login'); // Redirect ke halaman login setelah logout berhasil
+    });
 });
 
 app.get('/login', (req, res) => {
@@ -40,22 +67,51 @@ app.get('/login', (req, res) => {
 app.get('/signup', (req, res) => {
     res.render('signuppage'); // sign up
 });
+
 app.get('/hirepage', (req, res) => {
     res.render('hirepage'); // hire 
 });
 
 
-// Route untuk menangani proses signup dan menyimpan data ke database
+app.get('/hire', (req, res) => {
+    res.render('hirepage'); // hire 
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => { // Menghancurkan sesi pengguna
+        if (err) {
+            console.error('Error destroying session:', err);
+            return res.status(500).send('Failed to logout');
+        }
+        // Redirect ke halaman login setelah sesi dihancurkan
+        res.redirect('/login');
+    });
+});
+
+app.get('/admin', isAuthenticated, (req, res) => {
+    const query = 'SELECT * FROM `portfolio_cards`';
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error fetching portfolios:', err);
+            return res.status(500).send('Database error');
+        }
+        res.render('adminpage', { portfolios: result });
+    });
+});
+
+
+
+
+
+// route
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
 
-    // Validasi jika password dan confirm password tidak sama
     if (password !== confirmPassword) {
         return res.status(400).send('Passwords do not match');
     }
 
     try {
-        // Hash password sebelum disimpan
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const query = 'INSERT INTO users (username, email, password) VALUES (?, ?, ?)';
@@ -66,7 +122,7 @@ app.post('/signup', async (req, res) => {
             }
 
             console.log('User signed up');
-            res.redirect('/login'); // Redirect ke halaman login setelah berhasil signup
+            res.redirect('/login');
         });
     } catch (error) {
         console.error(error);
@@ -77,51 +133,97 @@ app.post('/signup', async (req, res) => {
 app.post('/login', (req, res) => {
     const { usernameOrEmail, password } = req.body;
 
-    // Cek apakah input adalah email
     const isEmail = /\S+@\S+\.\S+/.test(usernameOrEmail);
 
-    // Tentukan query SQL berdasarkan input
     const query = isEmail
         ? 'SELECT * FROM users WHERE email = ?'
         : 'SELECT * FROM users WHERE username = ?';
 
-    console.log('Input received:', usernameOrEmail, password); // Debug input
+    console.log('Input received:', usernameOrEmail, password); 
 
     db.query(query, [usernameOrEmail], (err, result) => {
+    if (err) {
+        console.error('Database error:', err);
+        return res.status(500).send('Internal server error');
+    }
+
+    console.log('Query result:', result);
+
+    if (result.length === 0) {
+        alert("Invalid username/email or password");
+        return;
+    }
+
+    const user = result[0];
+
+    bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) {
-            console.error('Database error:', err); // Debug error database
+            console.error('Password compare error:', err);
             return res.status(500).send('Internal server error');
         }
 
-        console.log('Query result:', result); // Debug hasil query
+        console.log('Password comparison result:', isMatch)
 
-        if (result.length === 0) {
-            return res.status(400).send('Invalid username/email or password');
+        if (!isMatch) {
+            alert("Invalid username/email or password");
+            return;
+        }
+        
+        req.session.user = { id: user.id, username: user.username };
+
+        if (user.username === 'admin') {
+            return res.redirect('/admin');
         }
 
-        const user = result[0];
+        console.log('User logged in successfully');
+        res.redirect('/');
+    });
+});
 
-        // Verifikasi password dengan bcrypt
-        bcrypt.compare(password, user.password, (err, isMatch) => {
+});
+
+
+//bingung disini
+app.post('/admin/portfolio/add', (req, res) => {
+    const { title, badge, role, description, tags } = req.body;
+    const image = req.files.image;
+    const uploadPath = `public/uploads/${image.name}`;
+    
+    // Move the uploaded file to the specified path
+    image.mv(uploadPath, (err) => {
+        if (err) {
+            console.error('Error saving file:', err);
+            return res.status(500).send('Error uploading file');
+        }
+        
+        // Set the path to be stored in the database
+        const imagePath = `/uploads/${image.name}`;
+        
+        // Prepare the SQL query
+        const query = 'INSERT INTO `portfolio_cards` (title, badge, role, description, tags, image_url) VALUES (?, ?, ?, ?, ?, ?)';
+        
+        // Execute the SQL query
+        db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), imagePath], (err, result) => {
             if (err) {
-                console.error('Password compare error:', err); // Debug error bcrypt
-                return res.status(500).send('Internal server error');
+                console.error('Error inserting portfolio:', err);
+                return res.status(500).send('Database error');
             }
-
-            console.log('Password comparison result:', isMatch); // Debug hasil bcrypt
-
-            if (!isMatch) {
-                return res.status(400).send('Invalid username/email or password');
-            }
-
-            // Set session jika login berhasil
-            req.session.userId = user.id;
-            console.log('User logged in successfully');
-            res.redirect('/signup'); // Redirect ke halaman utama
+            res.redirect('/admin');
         });
     });
 });
 
+app.post('/admin/portfolio/delete', (req, res) => {
+    const { id } = req.body;
+    const query = 'DELETE FROM `portfolio_cards` WHERE id = ?';
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error deleting portfolio:', err);
+            return res.status(500).send('Database error');
+        }
+        res.redirect('/admin');
+    });
+});
 
 
 // Jalankan Server
