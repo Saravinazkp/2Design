@@ -144,7 +144,8 @@ app.post('/login', (req, res) => {
     console.log('Query result:', result);
 
     if (result.length === 0) {
-        return res.status(400).send('Invalid username/email or password');
+        alert("Invalid username/email or password");
+        return;
     }
 
     const user = result[0];
@@ -158,7 +159,8 @@ app.post('/login', (req, res) => {
         console.log('Password comparison result:', isMatch)
 
         if (!isMatch) {
-            return res.status(400).send('Invalid username/email or password');
+            alert("Invalid username/email or password");
+            return;
         }
         
         req.session.user = { id: user.id, username: user.username };
@@ -180,27 +182,34 @@ app.post('/admin/portfolio/add', (req, res) => {
     const { title, badge, role, description, tags } = req.body;
     const image = req.files.image;
     const uploadPath = `public/uploads/${image.name}`;
+    
+    // Move the uploaded file to the specified path
     image.mv(uploadPath, (err) => {
         if (err) {
             console.error('Error saving file:', err);
             return res.status(500).send('Error uploading file');
         }
+        
+        // Set the path to be stored in the database
         const imagePath = `/uploads/${image.name}`;
-
-    const query = 'INSERT INTO `portfolio_cards` (title, badge, role, description, tags, image_url) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), image], (err, result) => {
-        if (err) {
-            console.error('Error inserting portfolio:', err);
-            return res.status(500).send('Database error');
-        }
-        res.redirect('/admin');
-    })
+        
+        // Prepare the SQL query
+        const query = 'INSERT INTO `portfolio_cards` (title, badge, role, description, tags, image_url) VALUES (?, ?, ?, ?, ?, ?)';
+        
+        // Execute the SQL query
+        db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), imagePath], (err, result) => {
+            if (err) {
+                console.error('Error inserting portfolio:', err);
+                return res.status(500).send('Database error');
+            }
+            res.redirect('/admin');
+        });
     });
 });
 
 app.post('/admin/portfolio/delete', (req, res) => {
     const { id } = req.body;
-    const query = 'DELETE FROM `portofolio cards` WHERE id = ?';
+    const query = 'DELETE FROM `portfolio_cards` WHERE id = ?';
     db.query(query, [id], (err, result) => {
         if (err) {
             console.error('Error deleting portfolio:', err);
