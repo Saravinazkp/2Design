@@ -3,115 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="/hirepage/stylehirepage.css">
-
-    <title>Profil Pengguna</title>
+    <title><%= designer.title %> - Profil</title>
 </head>
 <body>
     <div class="container">
         <header>
-
             <div class="logo">
                 <span><span class="highlight">2</span>Design</span>
             </div>
+            <!-- Menambahkan Menu Home -->
+            <nav>
+                <ul>
+                    <li><a href="/" class="home-link">Home</a></li> <!-- Link menuju halaman utama -->
+                </ul>
+            </nav>
             <button id="logout-btn" class="logout-btn">Log out</button>
         </header>
-        <div class="profile">
-            <img src="\hirepage\profile.png" alt="Profile Picture" class="profile-pic">
-            <div class="profile-info">
-                <h2>Heart Craft</h2>
-                <p class="rating">Top Rated ★★★★★</p>
-                <p>Indonesia, English, Korean, German</p>
-                <h3>Professional Graphic Designer</h3>
-                <p>
-                    As a graphic designer with 5 years of experience, I specialize in a
-                    wide range of creative solutions, including logo design, T-shirt
-                    design, brochure creation, corporate identity, and more. My passion
-                    lies in turning ideas into visually striking designs that leave a
-                    lasting impact.
-                </p>
-                <p>
-                    As a dedicated full-time freelancer, I am available 24/7 to cater to
-                    your design needs. Whether you need assistance with branding,
-                    marketing materials, or custom projects, I'm here to help. Rest
-                    assured, your satisfaction is my priority-I'll consider a project
-                    complete only when you're 100% happy with the result.
-                </p>
-                <p>
-                    Let's bring your ideas to life-don't hesitate to reach out anytime!
-                </p>
-                <div class="buttons">
-                    <button id="contact-btn" class="contact-btn">Contact</button>
-                    <button id="hire-btn" class="hire-btn">Hire</button>
-
+        
+        <div class="content">
+            <!-- Bagian Profil Desainer -->
+            <div class="profile-section">
+                <div class="profile">
+                    <img src="<%= designer.image_url %>" alt="Profile Picture" class="profile-pic">
+                    <div class="profile-info">
+                        <h2><%= designer.title %></h2>
+                        <p class="rating"><%= designer.badge %></p>
+                        <h3><%= designer.role %></h3>
+                        <p><%= designer.tags %></p>
+                        <div class="extra-info">
+                            <p><strong>Languages:</strong> <%= designer.lang %></p>
+                            <p><strong>Experience:</strong> <%= designer.exp %> Years</p>
+                            <p><strong>Location:</strong> <%= designer.loc %></p>
+                        </div>
+                        <p><%= designer.description %></p>
+                        <div class="buttons">
+                            <button id="contact-btn" class="contact-btn">Contact</button>
+                            <button id="hire-btn" class="hire-btn">Hire</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="stats">
-                <h3>JOB TYPE</h3>
-                <p>Fulltime</p>
-                <h3>JOB LOCATION</h3>
-                <p>Bogor, Indonesia</p>
-                <h3>EXPERIENCE</h3>
-                <p>5 Years</p>
 
-            </div><div class ="stats2">
-
-                <h3>On time</h3>
-                <p>97%</p>
-                <h3>On budget</h3>
-                <p>96%</p>
-                <h3>Accept rate</h3>
-                <p>89%</p>
-                <h3>Repeat hire rate</h3>
-                <p>15%</p>
+            <!-- Bagian Galeri Gambar Desain -->
+            <div class="gallery">
+                <h3>Designs by <%= designer.title %></h3>
+                <% designer.design_images.split(',').forEach(image => { %>
+                    <div class="card">
+                        <img src="<%= image %>" alt="Design Image" class="design-img">
+                        <p class="card-info">Design by <%= designer.title %></p>
+                    </div>
+                <% }); %>
             </div>
         </div>
 
-
-        <div class="grid-container">
-            <!-- Card 1 -->
-            <div class="card">
-              <img src="\homepage\1.png" alt="gambar desain">
-              <div class="card-info">
-                <p>Swap your place, explore the world.</p>
-                <div class="like">
-                  <span>❤️ 66</span>
-                  <span>👀 1.2k</span>
-                </div>
-              </div>
-            </div>
-        
-            <!-- Card 2 -->
-            <div class="card">
-              <img src="desain2.png" alt="gambar desain">
-              <div class="card-info">
-                <p>Travel payment interface design.</p>
-                <div class="like">
-                  <span>❤️ 123</span>
-                  <span>👀 12.9k</span>
-                </div>
-              </div>
-            </div>
-        
-            <!-- Card 3 -->
-            <div class="card">
-              <img src="desain3.png" alt="gambar desain">
-              <div class="card-info">
-                <p>Aurealone-Metaverse Website.</p>
-                <div class="like">
-                  <span>❤️ 104</span>
-                  <span>👀 5.8k</span>
-                </div>
-              </div>
-            </div>
-        </div>
+        <!-- Bagian Komentar -->
         <div class="container-comments">
             <h2>Comments</h2>
             <div class="comment">
-                <div class="avatar">
-                <img src="avatar1.jpeg" alt="Profile Picture" class="avatar-pic">
-            </div>
                 <div class="comment-text">
                     <p>★★★★★ [Top Comment]</br> </br>
                         Fast and friendly service. Revisions were done promptly. Highly recommended!</p>
@@ -119,30 +68,18 @@
             </div>
             <hr>
             <div class="comment">
-                <div class="avatar">
-                <img src="avatar2.jpeg" alt="Profile Picture" class="avatar-pic">
-            </div>
                 <div class="comment-text">
-                    <p> ★★★★ </br> </br>
-                    Overall, a pleasant experience! Will use their services again on future projects.</p>
+                    <p>★★★★ </br> </br>
+                        Overall, a pleasant experience! Will use their services again on future projects.</p>
                 </div>
             </div>
             <hr>
-            <div class="comment">
-                <div class="avatar">
-                    <img src="avatar3.jpeg" alt="Profile Picture" class="avatar-pic">
-            </div>
-                <div class="comment-text">
-                    <p> ★★★★★</br> </br>
-                        Very satisfied with the design results! Creative, neat, and according to expectations.</p>
-                </div>
-            </div>
             <div class="comment-form">
-                <label for="comment-input">write your comment</label>
-                <input type="text" id="comment-input" placeholder="type maximum 100 characters here" maxlength="100">
+                <label for="comment-input">Write your comment</label>
+                <input type="text" id="comment-input" placeholder="Type maximum 100 characters here" maxlength="100">
             </div>
         </div>
-
     </div>
+    <script src="script.js"></script></script>
 </body>
 </html>

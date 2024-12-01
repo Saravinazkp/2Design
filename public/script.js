@@ -33,4 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '/hirepage'; // Redirect ke rute hirepage
         });
     }
+
+    const cards = document.querySelectorAll(".card-link");
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            const id = card.getAttribute("data-id");
+            if (id) {
+                // Redirect to the hire page with the corresponding ID
+                window.location.href = `/hire/${id}`;
+            }
+        });
+    });
 });

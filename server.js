@@ -75,9 +75,31 @@ app.get('/signup', (req, res) => {
     res.render('signuppage'); // sign up
 });
 
-app.get('/hirepage', (req, res) => {
-    res.render('hirepage'); // hire 
+app.get('/hire/:id', isAuthenticated, (req, res) => {
+    const designerId = req.params.id;
+    const query = `
+        SELECT 
+            title, badge, role, description, tags, image_url, lang, exp, loc, 
+            GROUP_CONCAT(design_image_url) AS design_images
+        FROM designer
+        WHERE id = ?
+        GROUP BY id;
+    `;
+
+    db.query(query, [designerId], (err, result) => {
+        if (err) {
+            console.error('Error fetching designer profile:', err);
+            return res.status(500).send('Database error');
+        }
+
+        if (result.length === 0) {
+            return res.status(404).send('Designer not found');
+        }
+
+        res.render('hirepage', { designer: result[0], user: req.session.user || null});
+    });
 });
+
 
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => { // Menghancurkan sesi pengguna
@@ -166,6 +188,7 @@ app.post('/login', (req, res) => {
             console.error('Password compare error:', err);
             return res.status(500).send('Invalid username/email or password');
         }
+        
         
         req.session.user = { id: user.id, username: user.username };
 
