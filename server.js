@@ -45,8 +45,14 @@ function isAuthenticated(req, res, next) {
 
 //getter
 app.get('/', (req, res) => {
-    const user = req.session.user || null;
-    res.render('index', { user });
+    const query = 'SELECT * FROM `portfolio_cards`';
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Error fetching cards:', err);
+            return res.status(500).send('Database error');
+        }
+        res.render('index', { portfolios: result, user: req.session.user || null });
+    });
 });
 
 // Logout route

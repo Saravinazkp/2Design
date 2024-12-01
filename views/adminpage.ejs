@@ -22,16 +22,36 @@
             <form action="/admin/portfolio/add" method="POST" enctype="multipart/form-data">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required>
+
                 <label for="badge">Badge:</label>
                 <input type="text" id="badge" name="badge">
+
                 <label for="role">Role:</label>
                 <input type="text" id="role" name="role" required>
+
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" required></textarea>
+
                 <label for="tags">Tags:</label>
                 <input type="text" id="tags" name="tags" placeholder="e.g., Design, Logo">
-                <label for="image">Image:</label>
+
+
+                <!-- New Fields -->
+                <label for="lang">Languages (e.g., English, Spanish):</label>
+                <input type="text" id="lang" name="lang" placeholder="e.g., English, Spanish" required>
+
+                <label for="loc">Location:</label>
+                <input type="text" id="loc" name="loc" placeholder="e.g., New York" required>
+
+                <label for="exp">Experience (in years):</label>
+                <input type="number" id="exp" name="exp" placeholder="e.g., 5" required>
+
+                <label for="design">Design Image:</label>
+                <input type="file" id="design" name="design" required>
+
+                <label for="image">Profile picture:</label>
                 <input type="file" id="image" name="image" required>
+
                 <button type="submit">Add Portfolio</button>
             </form>
         </section>
@@ -48,6 +68,10 @@
                         <th>Description</th>
                         <th>Tags</th>
                         <th>Image</th>
+                        <th>Languages</th>
+                        <th>Experience</th>
+                        <th>Design</th>
+                        <th>Location</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -60,6 +84,10 @@
                         <td><%= portfolio.description %></td>
                         <td><%= JSON.parse(portfolio.tags).join(', ') %></td>
                         <td><img src="<%= portfolio.image_path %>" alt="<%= portfolio.title %>" style="width:100px;"></td>
+                        <td><%= portfolio.lang %></td>
+                        <td><%= portfolio.exp %> years</td>
+                        <td><img src="<%= portfolio.design_image_path %>" alt="<%= portfolio.title %> design" style="width:100px;"></td>
+                        <td><%= portfolio.loc %></td>
                         <td>
                             <form action="/admin/portfolio/delete" method="POST" style="display:inline;">
                                 <input type="hidden" name="id" value="<%= portfolio.id %>">

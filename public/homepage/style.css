@@ -156,8 +156,7 @@ body {
     color: #fff;
   }
   
- /* Cards Section */
-.cards {
+  .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
@@ -172,6 +171,13 @@ body {
     border-radius: 10px;
     text-align: center;
     border: 2px solid #AB405C;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 .card img {
@@ -184,7 +190,7 @@ body {
 
 .badge {
     background: #AB405C;
-    color: #000;
+    color: #fff;
     border-radius: 5px;
     padding: 5px;
     font-size: 0.8rem;
@@ -196,43 +202,21 @@ body {
     margin: 5px;
     border-radius: 3px;
     display: inline-block;
+    color: #fff;
+    font-size: 0.8rem;
+    text-transform: uppercase;
 }
 
-/* Media Queries */
+/* Responsiveness */
 @media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+    .card {
+        padding: 15px;
+    }
+
+    .card img {
+        height: 150px;
     }
 }
-.hire-btn {
-    display: inline;
-    padding: 10px;
-    margin-top: 20px;
-    width : 60%;
-    font-size: 1rem;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-.hire-btn {
-    background:#AB405C;
-    color: white;
-   
-}
-
-.hire-btn:hover {
-    background: white;
-    color: #AB405C;
-    border: 1px solid #AB405C;
-}
-
-.hire-btn:hover {
-    background: white;
-}
-
 footer {
     padding: 20px;
     background-color: #000000;
