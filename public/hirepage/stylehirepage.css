@@ -30,14 +30,12 @@ header {
 .logout-btn {
     display: flex;
     padding: 10px 15px;
-    margin: auto;
+    margin-left: auto;
     font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer; 
     justify-content: space-evenly;   
-}
-.logout-btn {
     background:#AB405C;
     color: rgb(255, 255, 255);
     border: 1px solid #AB405C;
@@ -113,6 +111,7 @@ header {
     padding: 15px;
     margin-left: 20px;
     width: 150px;
+    height: 320px;
 }
 .stats2 {
     background-color: #A73E59;
@@ -120,6 +119,7 @@ header {
     padding: 15px;
     margin-left: 20px;
     width: 150px;
+    height: 320px;
 }
 
 /* grid desain*/

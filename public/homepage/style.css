@@ -184,8 +184,8 @@ body {
 
 .badge {
     background: #AB405C;
-    color: #000;
-    border-radius: 5px;
+    color: #f5cfcf;
+    border-radius: 8px;
     padding: 5px;
     font-size: 0.8rem;
 }

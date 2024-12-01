@@ -88,7 +88,7 @@ right-header h1 {
 form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     gap: 15px;
     align-self: stretch;
 }
@@ -103,8 +103,8 @@ input {
     padding: 10px;
     border: 1px solid #555;
     border-radius: 5px;
-    background-color: #2a2a2a;
-    color: #fff;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 input:focus {
