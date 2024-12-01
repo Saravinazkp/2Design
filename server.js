@@ -99,10 +99,6 @@ app.get('/admin', isAuthenticated, (req, res) => {
     });
 });
 
-
-
-
-
 // route
 app.post('/signup', async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
@@ -150,8 +146,8 @@ app.post('/login', (req, res) => {
     console.log('Query result:', result);
 
     if (result.length === 0) {
-        alert("Invalid username/email or password");
-        return;
+        console.error('Password compare error:', err);
+        return res.status(500)("Invalid username/email or password");
     }
 
     const user = result[0];
@@ -159,14 +155,14 @@ app.post('/login', (req, res) => {
     bcrypt.compare(password, user.password, (err, isMatch) => {
         if (err) {
             console.error('Password compare error:', err);
-            return res.status(500).send('Internal server error');
+            return res.status(500).send("Internal server error.");
         }
 
         console.log('Password comparison result:', isMatch)
 
         if (!isMatch) {
-            alert("Invalid username/email or password");
-            return;
+            console.error('Password compare error:', err);
+            return res.status(500).send('Invalid username/email or password');
         }
         
         req.session.user = { id: user.id, username: user.username };
@@ -224,7 +220,6 @@ app.post('/admin/portfolio/delete', (req, res) => {
         res.redirect('/admin');
     });
 });
-
 
 // Jalankan Server
 const PORT = 3000;
