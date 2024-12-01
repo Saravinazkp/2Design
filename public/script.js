@@ -24,4 +24,13 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = '/logout'; // Redirect ke rute logout
         });
     }
+
+    //Tombol hire
+    const hirebtn = document.getElementById('hire-btn');
+    if (hirebtn) {
+        hirebtn.addEventListener('click', function(event) {
+            event.preventDefault(); // Mencegah aksi default dari button
+            window.location.href = '/hirepage'; // Redirect ke rute hirepage
+        });
+    }
 });
