@@ -7,6 +7,7 @@ const app = express();
 const dbConnection = require('./db-config.js');
 const bcrypt = require('bcrypt');
 const fileUpload = require('express-fileupload');
+const fs = require('fs');
 
 
 //koneksi ke database
@@ -45,7 +46,7 @@ function isAuthenticated(req, res, next) {
 
 //getter
 app.get('/', (req, res) => {
-    const query = 'SELECT * FROM `portfolio_cards`';
+    const query = 'SELECT * FROM `designer`';
     db.query(query, (err, result) => {
         if (err) {
             console.error('Error fetching cards:', err);
@@ -90,7 +91,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/admin', isAuthenticated, (req, res) => {
-    const query = 'SELECT * FROM `portfolio_cards`';
+    const query = 'SELECT * FROM `designer`';
     db.query(query, (err, result) => {
         if (err) {
             console.error('Error fetching portfolios:', err);
@@ -182,27 +183,87 @@ app.post('/login', (req, res) => {
 
 //bingung disini
 app.post('/admin/portfolio/add', (req, res) => {
-    const { title, badge, role, description, tags } = req.body;
-    const image = req.files.image;
-    const uploadPath = `public/uploads/${image.name}`;
+    const { title, badge, role, description, tags, lang, exp, loc } = req.body;
+    const profileImage = req.files.image_url; // Foto profil
+    const designImage = req.files.design_image_url; // Foto desain
     
-    // Move the uploaded file to the specified path
-    image.mv(uploadPath, (err) => {
+    const profileUploadPath = `public/uploads/profile/${profileImage.name}`; // Path foto profil
+    const designUploadPath = `public/uploads/design/${designImage.name}`; // Path foto desain
+    
+    // Move the uploaded profile image to the specified path
+    profileImage.mv(profileUploadPath, (err) => {
         if (err) {
-            console.error('Error saving file:', err);
-            return res.status(500).send('Error uploading file');
+            console.error('Error saving profile image:', err);
+            return res.status(500).send('Error uploading profile image');
         }
         
-        // Set the path to be stored in the database
-        const imagePath = `/uploads/${image.name}`;
-        
-        // Prepare the SQL query
-        const query = 'INSERT INTO `portfolio_cards` (title, badge, role, description, tags, image_url) VALUES (?, ?, ?, ?, ?, ?)';
-        
-        // Execute the SQL query
-        db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), imagePath], (err, result) => {
+        // Move the uploaded design image to the specified path
+        designImage.mv(designUploadPath, (err) => {
             if (err) {
-                console.error('Error inserting portfolio:', err);
+                console.error('Error saving design image:', err);
+                return res.status(500).send('Error uploading design image');
+            }
+            
+            // Set the paths to be stored in the database
+            const profileImagePath = `/uploads/profile/${profileImage.name}`;
+            const designImagePath = `/uploads/design/${designImage.name}`;
+            
+            // Prepare the SQL query
+            const query = 'INSERT INTO designer (title, badge, role, description, tags, lang, exp, loc, image_url, design_image_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            
+            // Execute the SQL query
+            db.query(query, [title, badge, role, description, JSON.stringify(tags.split(',')), lang, exp, loc, profileImagePath, designImagePath], (err, result) => {
+                if (err) {
+                    console.error('Error inserting portfolio:', err);
+                    return res.status(500).send('Database error');
+                }
+                res.redirect('/admin');
+            });
+        });
+    });
+});
+
+
+
+
+app.post('/admin/portfolio/delete', (req, res) => {
+    const { id } = req.body;
+
+    // Query untuk mendapatkan path file gambar
+    const query = 'SELECT image_url, design_image_url FROM `designer` WHERE id = ?';
+    
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error('Error fetching portfolio images:', err);
+            return res.status(500).send('Database error');
+        }
+        
+        if (result.length === 0) {
+            return res.status(404).send('Portfolio not found');
+        }
+        
+        const portfolio = result[0];
+        
+        // Hapus file gambar jika ada
+        const profileImagePath = path.join(__dirname, 'public', portfolio.image_url);
+        const designImagePath = path.join(__dirname, 'public', portfolio.design_image_url);
+        
+        // Hapus file gambar profil jika ada
+        if (fs.existsSync(profileImagePath)) {
+            fs.unlinkSync(profileImagePath);
+        }
+
+        // Hapus file gambar desain jika ada
+        if (fs.existsSync(designImagePath)) {
+            fs.unlinkSync(designImagePath);
+        }
+
+        // Hapus data dari database
+        const deleteQuery = 'DELETE FROM `designer` WHERE id = ?';
+        
+        db.query(deleteQuery, [id], (err, result) => {
+            if (err) {
+                console.error('Error deleting portfolio:', err);
                 return res.status(500).send('Database error');
             }
             res.redirect('/admin');
@@ -210,17 +271,6 @@ app.post('/admin/portfolio/add', (req, res) => {
     });
 });
 
-app.post('/admin/portfolio/delete', (req, res) => {
-    const { id } = req.body;
-    const query = 'DELETE FROM `portfolio_cards` WHERE id = ?';
-    db.query(query, [id], (err, result) => {
-        if (err) {
-            console.error('Error deleting portfolio:', err);
-            return res.status(500).send('Database error');
-        }
-        res.redirect('/admin');
-    });
-});
 
 // Jalankan Server
 const PORT = 3000;

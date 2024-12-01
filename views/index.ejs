@@ -47,13 +47,12 @@
 
 
       <section class="cards">
-        <% portfolios.forEach(portfolio => { %>
+        <% portfolios.forEach(portfolio => { %> <!-- Ganti 'portfolio' menjadi 'portfolios' -->
         <div class="card">
             <img src="<%= portfolio.image_url %>" alt="<%= portfolio.title %>" />
             <h2><%= portfolio.title %></h2>
             <span class="badge"><%= portfolio.badge %></span>
             <p><%= portfolio.role %></p>
-            <button class="hire-btn">Hire</button>
         </div>
         <% }); %>
     </section>
@@ -62,39 +61,9 @@
             <div class="footer-left">
                 <div class="logo"><span><span class="highlight">2</span>Design</span></div>
                 <p>November 2024</p>
-                <p>Temukan Kami</p>
-                <div class="social-icons">
-                    <img src="/icon/instagram.svg" alt="Icon 1"></a>
-                    <img src="/icon/facebook.svg" alt="Icon 2"></a>
-                    <img src="/icon/xtwitter.svg" alt="Icon 3"></a>
-                    <img src="/icon/LinkedIn.svg" alt="Icon 4"></a>
-                    <img src="/icon/Line.svg" alt="Icon 5"></a>
-                    <img src="/icon/Youtube.svg" alt="Icon 6"></a>
-                </div>
+                <p>Made by Kelompok 2 Pemrograman Web</p>
             </div>
-            <div class="footer-right">
-                <div class="categories">
-                    <h3>Kategori</h3>
-                    <ul>
-                        <li>1980-1990</li>
-                        <li>1990-2000</li>
-                        <li>Duta Besar</li>
-                        <li>FTEC</li>
-                        <li>FTIRS</li>
-                        <li>FTSPK</li>
-                        <li>FV</li>
-                        <li>Kepala Daerah</li>
-                        <li>Mentri</li>
-                        <li>Pimpinan</li>
-                    </ul>
-                </div>
-                <div class="meta">
-                    <h3>Meta</h3>
-                    <ul>
-                        <li><a href="#">Masuk</a></li>
-                        <li><a href="#">Feed entri</a></li>
-                        <li><a href="#">Feed komentar</a></li>
-                    </ul>
+            
                 </div>
             </div>
         </div>
